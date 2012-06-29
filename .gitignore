@@ -1,0 +1,9 @@
+*.pyc
+*.swp
+*egg*
+.token
+.cache
+config/bot.conf
+doc/_*
+.DS_Store
+subclass

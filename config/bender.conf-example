@@ -1,0 +1,13 @@
+# This configuration should be appened to
+# your ~/.bender.conf file along with BenderBot's
+# configuration.
+#
+# This plugin is meant to replace IRCProcess
+# or any other IRC process that handles
+# readsocket.
+#
+[ArchiveProcess]
+library = BenderBot_Archive.Archive
+class = Archive
+# If a important process dies the entire bot will die
+important = False

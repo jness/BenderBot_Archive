@@ -6,17 +6,26 @@ from datetime import datetime
 
 class Archive(BenderProcess):
     
+    def __getMessage(self):
+        self.msg = self.irc_process.queue.get()
+        return self.msg
+        
+    def __formatMessage(self):
+        self.f_msg = None
+        m = match(':(.*)!.* PRIVMSG (.*) :(.*)', self.msg)
+        if m:
+            (nick, channel, message) = m.groups()
+            if channel == self.irc.channel:
+                self.f_msg = '[%s] [%s] %s' % \
+                            (datetime.now().ctime(), nick, message)
+        return self.f_msg
+    
     def run(self):
         while True:
-            msg = self.irc_process.queue.get()
-            
-            if msg:
-                m = match(':(.*)!.* PRIVMSG (.*) :(.*)', msg)
-                if m:
-                    (nick, channel, message) = m.groups()
-                    # be sure this is a channel message
-                    if channel == self.irc.channel:
-                        print '[%s] [%s] %s' % (datetime.now().ctime(),
-                                               nick, message)
+            if self.__getMessage():
+                if self.__formatMessage():
+                    # need a function that writes to text file here,
+                    # we can then use that in a web interface.
+                    print self.f_msg
                         
             sleep(0.02) # Slow down the loop just a bit to avoid CPU melt ;)

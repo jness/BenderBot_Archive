@@ -8,7 +8,8 @@ class Archive(BenderProcess):
     
     def run(self):
         while True:
-            msg = self.irc_process.output.recv()
+            msg = self.irc_process.queue.get()
+            
             if msg:
                 m = match(':(.*)!.* PRIVMSG (.*) :(.*)', msg)
                 if m:

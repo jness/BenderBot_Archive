@@ -41,6 +41,7 @@ class Archive(BenderProcess):
             os.makedirs(p)
         
         # append data to log
+        self.logger.debug('Appending message to %s%s' % (p, filename))
         f = open('%s%s' % (p, filename), 'a+')
         f.write(self.f_msg + '\n')
         f.close()
@@ -49,7 +50,6 @@ class Archive(BenderProcess):
         while True:
             if self.__getMessage():
                 if self.__formatMessage():
-                    self.logger.debug('Appending message to text file')
                     self.__appendLog()
                         
             sleep(0.02) # Slow down the loop just a bit to avoid CPU melt ;)

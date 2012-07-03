@@ -1,11 +1,20 @@
 from BenderBot.BenderProcess import BenderProcess
 from BenderBot_Responder.Requests import Requests
+from BenderBot.Configuration import get_config
 from time import sleep
 from re import match
 from datetime import datetime
 import os
 
 class Archive(BenderProcess):
+    
+    def __init__(self):
+        self.config = get_config()
+        try:
+            self.logdir = self.config.get('Archive', 'logdir')
+        except:
+            self.logpath = './'
+        super(Archive, self).__init__()
     
     def __getMessage(self):
         self.msg = self.irc_process.queue.get()
@@ -24,7 +33,14 @@ class Archive(BenderProcess):
     def __appendLog(self):
         d = datetime.now()
         filename = '%s-%s-%s.txt' % (d.year, d.month, d.day)
-        f = open(filename, 'a+')
+        
+        # be sure our path exists
+        p = os.path.expanduser(self.logdir)
+        if not os.path.exists(p):
+            os.makedirs(p)
+        
+        # append data to log
+        f = open('%s%s' % (p, filename), 'a+')
         f.write(self.f_msg + '\n')
         f.close()
     

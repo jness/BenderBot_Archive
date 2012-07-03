@@ -26,8 +26,9 @@ class Archive(BenderProcess):
         if m:
             (nick, channel, message) = m.groups()
             if channel == self.irc.channel:
-                self.f_msg = '[%s] [%s] %s' % \
-                            (datetime.now().ctime(), nick, message)
+                timestamp = datetime.utcnow().strftime('%Y-%m-%d %H:%m')
+                self.f_msg = '%s <%s> %s' % \
+                            (timestamp, nick, message)
         return self.f_msg
     
     def __appendLog(self):

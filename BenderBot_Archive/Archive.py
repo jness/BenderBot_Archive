@@ -3,7 +3,6 @@ from BenderBot.Configuration import get_config
 from time import sleep
 from re import match
 from datetime import datetime
-from Queue import Empty
 import os
 
 class Archive(BenderProcess):
@@ -17,10 +16,8 @@ class Archive(BenderProcess):
         super(Archive, self).__init__()
     
     def __getMessage(self):
-        try:
-            self.msg = self.irc_process.queue.get_nowait()
-        except Empty:
-            self.msg = None
+        # get() is blocking so we don't need a sleep in our loop
+        self.msg = self.irc_process.queue.get()
         return self.msg
         
     def __formatMessage(self):
@@ -54,5 +51,3 @@ class Archive(BenderProcess):
             if self.__getMessage():
                 if self.__formatMessage():
                     self.__appendLog()
-                        
-            sleep(0.02) # Slow down the loop just a bit to avoid CPU melt ;)

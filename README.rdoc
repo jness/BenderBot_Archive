@@ -1,0 +1,9 @@
+BenderBot_Archive is a simple plugin for recording all
+conversations in the channel.
+
+The conversations are recorded in plain text files
+with a year-month-day.txt naming schema:
+
+    # tail logs/2012-7-3.txt 
+    2012-07-03 20:07 <jness> hi guys
+    2012-07-03 20:07 <IUSBot> Morning

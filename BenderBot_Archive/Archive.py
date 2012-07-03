@@ -1,5 +1,4 @@
 from BenderBot.BenderProcess import BenderProcess
-from BenderBot_Responder.Requests import Requests
 from BenderBot.Configuration import get_config
 from time import sleep
 from re import match

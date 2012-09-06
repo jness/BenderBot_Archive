@@ -16,6 +16,6 @@ setup(name='BenderBot_Archive',
       packages=find_packages(exclude=['ez_setup', 'tests']),
       include_package_data=True,
       zip_safe=False,
-      install_requires=['launchpadlib', 'BenderBot'],
+      install_requires=['BenderBot'],
       test_suite='nose.collector',
       )

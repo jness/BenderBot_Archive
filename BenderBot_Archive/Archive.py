@@ -17,7 +17,7 @@ class Archive(BenderProcess):
     
     def __getMessage(self):
         # get() is blocking so we don't need a sleep in our loop
-        self.msg = self.irc_process.queue.get()
+        self.msg = self.queue.get()
         return self.msg
         
     def __formatMessage(self):

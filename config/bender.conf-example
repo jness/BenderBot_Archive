@@ -11,6 +11,8 @@ library = BenderBot_Archive.Archive
 class = Archive
 # If a important process dies the entire bot will die
 important = False
+# This process requires access to the IRC message queue
+listen = True
 
 [Archive]
 # The directory you want to store your IRC

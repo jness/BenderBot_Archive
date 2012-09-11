@@ -15,6 +15,17 @@ important = False
 listen = True
 
 [Archive]
+# Enable or disable MySQL support
+db_enable = False
+
 # The directory you want to store your IRC
-# channel logs at.
+# channel logs if db = False.
 logdir = ./logs/
+
+# Database connection information
+host = localhost
+port = 3306
+user = root
+password = 
+database = BenderBot_Archive
+table = chatlog

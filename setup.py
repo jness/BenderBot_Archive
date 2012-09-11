@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '0.2'
+version = '0.3'
 
 setup(name='BenderBot_Archive',
       version=version,
@@ -16,6 +16,6 @@ setup(name='BenderBot_Archive',
       packages=find_packages(exclude=['ez_setup', 'tests']),
       include_package_data=True,
       zip_safe=False,
-      install_requires=['BenderBot'],
+      install_requires=['BenderBot', 'MySQL-Python'],
       test_suite='nose.collector',
       )

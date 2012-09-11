@@ -2,8 +2,21 @@ BenderBot_Archive is a simple plugin for recording all
 conversations in the channel.
 
 The conversations are recorded in plain text files
-with a year-month-day.txt naming schema:
+with a year-month-day.txt naming schema when "db_enable"
+is set to False:
 
     # tail logs/2012-7-3.txt 
     2012-07-03 20:07 <jness> hi guys
     2012-07-03 20:07 <IUSBot> Morning
+
+And stored in a MySQL database when "db_enable" is set
+to True:
+
+    mysql> select * from chatlog;
+    +----+---------+-------+---------------------+
+    | id | message | user  | created             |
+    +----+---------+-------+---------------------+
+    |  1 | yo      | nessy | 2012-09-11 12:14:11 |
+    |  2 | whatsup | nessy | 2012-09-11 12:14:12 |
+    +----+---------+-------+---------------------+
+    2 rows in set (0.00 sec)
